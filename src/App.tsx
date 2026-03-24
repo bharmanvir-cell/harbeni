@@ -4,6 +4,7 @@
  */
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Layout } from './components/Layout';
 import { Home } from './pages/Home';
 import { Expertise } from './pages/Expertise';
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="contact" element={<Contact />} />
         </Route>
       </Routes>
+      <SpeedInsights />
     </BrowserRouter>
   );
 }
