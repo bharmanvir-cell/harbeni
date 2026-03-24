@@ -9,6 +9,7 @@ import { Home } from './pages/Home';
 import { Expertise } from './pages/Expertise';
 import { Work } from './pages/Work';
 import { Process } from './pages/Process';
+import { Pricing } from './pages/Pricing';
 import { Contact } from './pages/Contact';
 import { ScrollToTop } from './components/ScrollToTop';
 
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="expertise" element={<Expertise />} />
           <Route path="work" element={<Work />} />
           <Route path="process" element={<Process />} />
+          <Route path="pricing" element={<Pricing />} />
           <Route path="contact" element={<Contact />} />
         </Route>
       </Routes>

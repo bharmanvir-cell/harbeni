@@ -20,12 +20,12 @@ export const Hero = () => {
             <span>v2.0.30 - Anticipatory Systems Active</span>
           </div>
           
-          <h1 className="text-6xl md:text-8xl font-display font-extrabold tracking-tighter leading-[0.9] mb-8">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-display font-extrabold tracking-tighter leading-[0.9] mb-8">
             Web Dev &<br />
             AI <span className="text-gradient">Integration.</span>
           </h1>
           
-          <p className="text-zinc-400 text-lg md:text-xl max-w-xl mb-10 leading-relaxed">
+          <p className="text-zinc-400 text-base sm:text-lg md:text-xl max-w-xl mb-10 leading-relaxed">
             We build high-performance web applications and custom AI bots tailored for all business needs. Architecting the future of automation.
           </p>
 

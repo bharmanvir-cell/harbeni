@@ -49,7 +49,7 @@ export const Services = () => {
         transition={{ duration: 0.8 }}
         className="mb-16"
       >
-        <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight mb-4">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight mb-4">
           Modular Solutions.<br />
           <span className="text-zinc-500">Architected for the Future.</span>
         </h2>

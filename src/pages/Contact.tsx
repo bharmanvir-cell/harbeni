@@ -9,8 +9,8 @@ export const Contact = () => {
         animate={{ opacity: 1, y: 0 }}
         className="px-6 max-w-7xl mx-auto text-center mb-20"
       >
-        <h1 className="text-5xl md:text-7xl font-display font-extrabold mb-6">Get in Touch</h1>
-        <p className="text-zinc-400 text-xl max-w-2xl mx-auto">
+        <h1 className="text-3xl sm:text-5xl md:text-7xl font-display font-extrabold mb-6">Get in Touch</h1>
+        <p className="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto">
           Ready to architect your next system? Let's build something without limits.
         </p>
       </motion.section>
