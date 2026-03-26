@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageSquare, X, Send, Loader2, Calendar, Bot, User } from 'lucide-react';
+// Remove this:
 import { GoogleGenAI } from "@google/genai";
+
+// Add this (Mistral uses plain fetch):
+// No import needed
 
 interface Message {
   id: string;
