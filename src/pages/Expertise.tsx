@@ -12,7 +12,7 @@ export const Expertise = () => {
       >
         <h1 className="text-3xl sm:text-5xl md:text-7xl font-display font-extrabold mb-6">Our Expertise</h1>
         <p className="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto">
-          We specialize in high-performance web development and deep AI integration, creating intelligent bots that transform how businesses operate.
+          We specialize in custom AI agents, high-conversion web development on Next.js, and workflow automation that puts your business on autopilot.
         </p>
       </motion.section>
       <Services />

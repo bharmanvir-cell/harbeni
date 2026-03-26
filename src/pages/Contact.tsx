@@ -47,7 +47,7 @@ export const Contact = () => {
               <textarea rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-accent-cyan focus:shadow-[0_0_15px_rgba(0,242,255,0.2)] hover:border-white/20 transition-all" placeholder="Tell us about your project..."></textarea>
             </div>
             <button className="w-full py-4 bg-accent-cyan text-zinc-950 font-bold rounded-xl hover:shadow-[0_0_25px_rgba(0,242,255,0.6)] hover:scale-[1.01] transition-all active:scale-95 flex items-center justify-center gap-2">
-              Send Message <Send size={18} />
+              Book a Discovery Call <Send size={18} />
             </button>
           </form>
         </motion.div>
@@ -64,7 +64,7 @@ export const Contact = () => {
             </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Email Us</p>
-              <p className="text-xl font-display font-bold">hello@harbeni.com</p>
+              <p className="text-xl font-display font-bold">info@harbeni.com</p>
             </div>
           </motion.div>
 
@@ -80,7 +80,7 @@ export const Contact = () => {
             </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Call Us</p>
-              <p className="text-xl font-display font-bold">+1 (555) 000-0000</p>
+              <p className="text-xl font-display font-bold">(437) 367-0727</p>
             </div>
           </motion.div>
 
@@ -96,7 +96,7 @@ export const Contact = () => {
             </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Visit Us</p>
-              <p className="text-xl font-display font-bold">San Francisco, CA</p>
+              <p className="text-xl font-display font-bold">Brampton, Ontario (GTA)</p>
             </div>
           </motion.div>
         </div>

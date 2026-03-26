@@ -5,6 +5,9 @@ import { Architecture } from '../components/Architecture';
 import { Marquee } from '../components/Marquee';
 import { EnterpriseFeatures } from '../components/EnterpriseFeatures';
 import { FAQ } from '../components/FAQ';
+import { ROICalculator } from '../components/ROICalculator';
+import { Comparison } from '../components/Comparison';
+import { ResultsTicker } from '../components/ResultsTicker';
 
 export const Home = () => {
   return (
@@ -12,7 +15,10 @@ export const Home = () => {
       <Hero />
       <StatsBar />
       <Services />
+      <ROICalculator />
+      <Comparison />
       <Architecture />
+      <ResultsTicker />
       <Marquee />
       <EnterpriseFeatures />
       <FAQ />

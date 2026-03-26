@@ -2,10 +2,10 @@ import { motion } from 'motion/react';
 import { Search, PenTool, Code, Rocket } from 'lucide-react';
 
 const steps = [
-  { title: "Discover", desc: "We analyze your business needs and identify high-impact AI opportunities.", icon: Search },
-  { title: "Architect", desc: "We design fluid web interfaces and robust neural data paths for your bots.", icon: PenTool },
-  { title: "Integrate", desc: "We build high-performance systems with seamless AI and API integration.", icon: Code },
-  { title: "Deploy", desc: "We launch edge-ready solutions with guaranteed 99.9% uptime and monitoring.", icon: Rocket },
+  { title: "Discovery", desc: "We analyze your current manual workflows and bottlenecks to identify high-impact AI opportunities.", icon: Search },
+  { title: "Architecture", desc: "Designing the fluid UI and mapping the robust neural AI logic for your custom agents.", icon: PenTool },
+  { title: "Build", desc: "Rapid development on the Vercel edge network with seamless AI and API integration.", icon: Code },
+  { title: "Optimize", desc: "Launch, monitor analytics, and refine AI responses for guaranteed performance and uptime.", icon: Rocket },
 ];
 
 export const Process = () => {

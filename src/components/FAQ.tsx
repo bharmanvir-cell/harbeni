@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Plus, Minus } from 'lucide-react';
+import { FuturisticIcon } from './FuturisticIcon';
 
 const faqs = [
   {
     question: "How long does a typical project take?",
-    answer: "Most enterprise-grade systems are delivered within 12-16 weeks, depending on complexity and integration requirements."
+    answer: "Most enterprise-grade systems are delivered within 2-16 weeks, depending on complexity and integration requirements."
   },
   {
     question: "Do you provide post-launch support?",
@@ -31,7 +32,7 @@ export const FAQ = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="text-4xl font-display font-bold text-center mb-16"
+        className="text-4xl font-syne font-black text-center mb-16 text-white"
       >
         Common Inquiries
       </motion.h2>
@@ -44,14 +45,21 @@ export const FAQ = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="glass rounded-2xl overflow-hidden"
+            className="bg-[#040810] border border-white/5 rounded-[24px] overflow-hidden hover:border-white/20 transition-all duration-500"
           >
             <button
               onClick={() => setOpenIndex(openIndex === i ? null : i)}
-              className="w-full p-6 flex items-center justify-between text-left hover:bg-white/5 transition-colors"
+              className="w-full p-6 flex items-center justify-between text-left hover:bg-white/5 transition-colors group"
             >
-              <span className="font-display font-bold text-lg">{faq.question}</span>
-              {openIndex === i ? <Minus size={20} className="text-accent-cyan" /> : <Plus size={20} />}
+              <span className="font-syne font-bold text-lg text-white">{faq.question}</span>
+              <div className="transition-transform duration-300 group-hover:scale-110">
+                <FuturisticIcon 
+                  icon={openIndex === i ? Minus : Plus} 
+                  color={openIndex === i ? 'cyan' : 'white'} 
+                  size={16} 
+                  glow={openIndex === i}
+                />
+              </div>
             </button>
             
             <AnimatePresence>
@@ -62,7 +70,7 @@ export const FAQ = () => {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="px-6 pb-6 text-zinc-400 leading-relaxed">
+                  <div className="px-6 pb-6 text-zinc-500 leading-relaxed font-mono text-sm">
                     {faq.answer}
                   </div>
                 </motion.div>

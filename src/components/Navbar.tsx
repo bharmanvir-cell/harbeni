@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { FuturisticIcon } from './FuturisticIcon';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const navLinks = [
+    { name: 'About', path: '/about' },
     { name: 'Expertise', path: '/expertise' },
     { name: 'Work', path: '/work' },
     { name: 'Process', path: '/process' },
@@ -21,8 +23,8 @@ export const Navbar = () => {
       animate={{ y: 0 }}
       className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-4 md:py-6 pointer-events-none"
     >
-      <div className="max-w-7xl mx-auto flex justify-between items-center glass px-4 md:px-6 py-3 rounded-2xl pointer-events-auto relative">
-        <Link to="/" className="text-xl md:text-2xl font-display font-black tracking-tighter shrink-0">
+      <div className="max-w-7xl mx-auto flex justify-between items-center bg-[#040810]/80 backdrop-blur-xl border border-white/5 px-4 md:px-6 py-3 rounded-2xl pointer-events-auto relative shadow-2xl">
+        <Link to="/" className="text-xl md:text-2xl font-syne font-black tracking-tighter shrink-0 text-white">
           HARBENI<span className="text-accent-cyan">.</span>
         </Link>
         
@@ -32,8 +34,8 @@ export const Navbar = () => {
             <Link 
               key={link.path}
               to={link.path} 
-              className={`relative text-sm font-medium transition-colors group ${
-                location.pathname === link.path ? 'text-white' : 'text-zinc-400 hover:text-white'
+              className={`relative text-xs font-mono font-bold uppercase tracking-widest transition-colors group ${
+                location.pathname === link.path ? 'text-accent-cyan' : 'text-zinc-400 hover:text-white'
               }`}
             >
               {link.name}
@@ -45,16 +47,23 @@ export const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <Link to="/contact" className="hidden sm:block px-5 py-2 bg-white text-zinc-950 text-sm font-bold rounded-lg hover:bg-accent-cyan hover:shadow-[0_0_15px_rgba(0,242,255,0.6)] transition-all active:scale-95">
-            Get in Touch
+          <Link to="/contact" className="hidden sm:block px-6 py-2 bg-[#00e5ff] text-zinc-950 text-[10px] font-syne font-black uppercase tracking-widest rounded-lg hover:shadow-[0_0_20px_rgba(0,229,255,0.5)] transition-all active:scale-95">
+            Book Now
           </Link>
 
           {/* Mobile Toggle */}
           <button 
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-zinc-200 hover:text-white transition-colors"
+            className="lg:hidden p-2 text-zinc-200 hover:text-white transition-colors group"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            <div className="transition-transform duration-300 group-hover:scale-110">
+              <FuturisticIcon 
+                icon={isOpen ? X : Menu} 
+                color={isOpen ? 'cyan' : 'white'} 
+                size={20} 
+                glow={isOpen}
+              />
+            </div>
           </button>
         </div>
 
@@ -65,7 +74,7 @@ export const Navbar = () => {
               initial={{ opacity: 0, scale: 0.95, y: -20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -20 }}
-              className="absolute top-full left-0 right-0 mt-4 bg-zinc-900/98 backdrop-blur-xl rounded-2xl p-6 border border-white/10 lg:hidden shadow-2xl"
+              className="absolute top-full left-0 right-0 mt-4 bg-[#040810]/98 backdrop-blur-xl rounded-2xl p-6 border border-white/5 lg:hidden shadow-2xl"
             >
               <div className="flex flex-col gap-6">
                 {navLinks.map((link) => (
@@ -73,7 +82,7 @@ export const Navbar = () => {
                     key={link.path}
                     to={link.path}
                     onClick={() => setIsOpen(false)}
-                    className={`text-lg font-display font-bold transition-colors ${
+                    className={`text-lg font-syne font-black uppercase tracking-widest transition-colors ${
                       location.pathname === link.path ? 'text-accent-cyan' : 'text-zinc-400 hover:text-white'
                     }`}
                   >
@@ -83,9 +92,9 @@ export const Navbar = () => {
                 <Link 
                   to="/contact"
                   onClick={() => setIsOpen(false)}
-                  className="w-full py-4 bg-white text-zinc-950 text-center font-bold rounded-xl sm:hidden"
+                  className="w-full py-4 bg-[#00e5ff] text-zinc-950 text-center font-syne font-black uppercase tracking-widest rounded-xl sm:hidden"
                 >
-                  Get in Touch
+                  Book Now
                 </Link>
               </div>
             </motion.div>

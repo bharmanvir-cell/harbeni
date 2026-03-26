@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, Terminal } from 'lucide-react';
+import { ChevronRight, Terminal, Activity, Cpu } from 'lucide-react';
+import { FuturisticIcon } from './FuturisticIcon';
 
 export const Hero = () => {
   return (
@@ -15,27 +16,30 @@ export const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs font-medium text-accent-cyan mb-6">
-            <Terminal size={14} />
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass text-xs font-mono font-bold text-accent-cyan mb-8 border border-accent-cyan/20">
+            <div className="w-2 h-2 rounded-full bg-accent-cyan animate-pulse" />
             <span>v2.0.30 - Anticipatory Systems Active</span>
           </div>
           
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-display font-extrabold tracking-tighter leading-[0.9] mb-8">
-            Web Dev &<br />
-            AI <span className="text-gradient">Integration.</span>
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-syne font-black tracking-tighter leading-[0.85] mb-8 text-white">
+            Intelligent Systems.<br />
+            Sophisticated <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00e5ff] to-[#9d4edd]">Design.</span>
           </h1>
           
-          <p className="text-zinc-400 text-base sm:text-lg md:text-xl max-w-xl mb-10 leading-relaxed">
-            We build high-performance web applications and custom AI bots tailored for all business needs. Architecting the future of automation.
+          <p className="text-zinc-400 text-base sm:text-lg md:text-xl max-w-xl mb-10 leading-relaxed font-mono">
+            Automating Excellence. We build high-performance web applications and custom AI agents that run your business on autopilot.
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <Link to="/contact" className="px-8 py-4 bg-accent-cyan text-zinc-950 font-bold rounded-lg hover:shadow-[0_0_25px_rgba(0,242,255,0.6)] hover:scale-[1.02] transition-all active:scale-95 flex items-center gap-2">
-              Start a Project <ChevronRight size={18} />
+            <Link to="/contact" className="px-8 py-4 bg-[#00e5ff] text-zinc-950 font-syne font-bold rounded-xl hover:shadow-[0_0_30px_rgba(0,229,255,0.5)] hover:scale-[1.02] transition-all active:scale-95 flex items-center gap-2 uppercase tracking-widest text-xs">
+              Book a Discovery Call <ChevronRight size={18} />
             </Link>
-            <Link to="/work" className="px-8 py-4 glass text-white font-bold rounded-lg hover:bg-white/10 hover:border-accent-cyan/50 hover:shadow-[0_0_20px_rgba(0,242,255,0.2)] hover:scale-[1.02] transition-all active:scale-95">
-              View Portfolio
-            </Link>
+            <button 
+              onClick={() => document.getElementById('architecture')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-8 py-4 bg-white/5 border border-white/10 text-white font-syne font-bold rounded-xl hover:bg-white/10 hover:border-accent-cyan/50 hover:shadow-[0_0_20px_rgba(0,229,255,0.2)] hover:scale-[1.02] transition-all active:scale-95 flex items-center gap-2 uppercase tracking-widest text-xs"
+            >
+              Backend View <Terminal size={18} className="text-accent-cyan" />
+            </button>
           </div>
         </motion.div>
 
@@ -43,10 +47,10 @@ export const Hero = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="relative aspect-square lg:aspect-auto lg:h-[600px] glass rounded-3xl p-8 flex flex-col gap-4 overflow-hidden"
+          className="relative aspect-square lg:aspect-auto lg:h-[600px] bg-[#040810] border border-white/5 rounded-[40px] p-8 flex flex-col gap-4 overflow-hidden shadow-2xl"
         >
           {/* Neural Network / Code Compiling Visual */}
-          <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <div className="absolute inset-0 opacity-10 pointer-events-none">
              <div className="grid grid-cols-10 h-full w-full">
                 {Array.from({ length: 100 }).map((_, i) => (
                   <div key={i} className="border-[0.5px] border-white/10" />
@@ -54,35 +58,35 @@ export const Hero = () => {
              </div>
           </div>
 
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-3 h-3 rounded-full bg-red-500/50" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
-            <div className="w-3 h-3 rounded-full bg-green-500/50" />
-            <span className="ml-2 text-xs font-mono text-zinc-500">harbeni-compiler --optimize</span>
+          <div className="flex items-center gap-2 mb-4 relative z-10">
+            <div className="w-3 h-3 rounded-full bg-red-500/30" />
+            <div className="w-3 h-3 rounded-full bg-yellow-500/30" />
+            <div className="w-3 h-3 rounded-full bg-green-500/30" />
+            <span className="ml-2 text-[10px] font-mono text-zinc-600 uppercase tracking-widest">harbeni-compiler --optimize</span>
           </div>
 
-          <div className="flex-1 font-mono text-sm space-y-2 overflow-hidden">
+          <div className="flex-1 font-mono text-xs space-y-2 overflow-hidden relative z-10">
             <motion.div 
               animate={{ y: [0, -200] }}
-              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-              className="space-y-2"
+              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+              className="space-y-3"
             >
               <p className="text-accent-cyan">Initializing neural architecture...</p>
-              <p className="text-zinc-500">{"{ status: 'OK', latency: '1.2ms' }"}</p>
+              <p className="text-zinc-600">{"{ status: 'OK', latency: '1.2ms' }"}</p>
               <p className="text-accent-purple">Optimizing data paths for scale...</p>
-              <p className="text-zinc-500">{"[####################] 100%"}</p>
+              <p className="text-zinc-600">{"[####################] 100%"}</p>
               <p className="text-accent-cyan">Compiling edge-ready modules...</p>
-              <p className="text-zinc-300">import {"{ Intelligence }"} from "@harbeni/core";</p>
-              <p className="text-zinc-300">const app = new Intelligence({"{"} mode: 'anticipatory' {"}"});</p>
-              <p className="text-zinc-500">{"// System ready for deployment"}</p>
+              <p className="text-zinc-400">import {"{ Intelligence }"} from "@harbeni/core";</p>
+              <p className="text-zinc-400">const app = new Intelligence({"{"} mode: 'anticipatory' {"}"});</p>
+              <p className="text-zinc-600">{"// System ready for deployment"}</p>
               <p className="text-accent-cyan">Initializing neural architecture...</p>
-              <p className="text-zinc-500">{"{ status: 'OK', latency: '1.2ms' }"}</p>
+              <p className="text-zinc-600">{"{ status: 'OK', latency: '1.2ms' }"}</p>
               <p className="text-accent-purple">Optimizing data paths for scale...</p>
-              <p className="text-zinc-500">{"[####################] 100%"}</p>
+              <p className="text-zinc-600">{"[####################] 100%"}</p>
               <p className="text-accent-cyan">Compiling edge-ready modules...</p>
-              <p className="text-zinc-300">import {"{ Intelligence }"} from "@harbeni/core";</p>
-              <p className="text-zinc-300">const app = new Intelligence({"{"} mode: 'anticipatory' {"}"});</p>
-              <p className="text-zinc-500">{"// System ready for deployment"}</p>
+              <p className="text-zinc-400">import {"{ Intelligence }"} from "@harbeni/core";</p>
+              <p className="text-zinc-400">const app = new Intelligence({"{"} mode: 'anticipatory' {"}"});</p>
+              <p className="text-zinc-600">{"// System ready for deployment"}</p>
             </motion.div>
           </div>
 
@@ -90,18 +94,34 @@ export const Hero = () => {
           <motion.div 
             animate={{ 
               y: [0, -10, 0],
-              rotate: [0, 5, 0]
+              rotate: [0, 2, 0]
             }}
-            transition={{ duration: 4, repeat: Infinity }}
-            className="absolute bottom-12 right-12 p-6 glass rounded-2xl shadow-2xl border-accent-cyan/20"
+            transition={{ duration: 5, repeat: Infinity }}
+            className="absolute bottom-12 right-12 p-6 bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 z-20"
+          >
+            <div className="flex items-center gap-5">
+              <FuturisticIcon icon={Activity} color="cyan" size={24} />
+              <div>
+                <p className="text-[10px] font-mono font-bold text-accent-cyan uppercase tracking-[0.2em]">Active Node</p>
+                <p className="text-2xl font-syne font-black text-white">99.9% Uptime</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Secondary Node */}
+          <motion.div 
+            animate={{ 
+              y: [0, 10, 0],
+              rotate: [0, -2, 0]
+            }}
+            transition={{ duration: 6, repeat: Infinity, delay: 1 }}
+            className="absolute top-24 right-12 p-4 bg-white/5 backdrop-blur-xl rounded-2xl shadow-xl border border-white/10 z-20"
           >
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-accent-cyan/20 flex items-center justify-center">
-                <div className="w-6 h-6 rounded-full bg-accent-cyan animate-pulse" />
-              </div>
+              <FuturisticIcon icon={Cpu} color="purple" size={18} />
               <div>
-                <p className="text-xs font-bold text-accent-cyan uppercase tracking-widest">Active Node</p>
-                <p className="text-xl font-display font-bold">99.9% Uptime</p>
+                <p className="text-[8px] font-mono font-bold text-accent-purple uppercase tracking-[0.2em]">Neural Engine</p>
+                <p className="text-lg font-syne font-black text-white">Optimized</p>
               </div>
             </div>
           </motion.div>

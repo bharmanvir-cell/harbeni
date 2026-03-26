@@ -1,0 +1,27 @@
+# Harbeni - Intelligent Systems & Sophisticated Design
+
+Harbeni is a premier digital agency based in Brampton, Ontario (Greater Toronto Area), specializing in architecting high-performance web applications and autonomous AI agents.
+
+## Services
+- **Custom AI Agents**: Bespoke LLM-driven agents for business process automation.
+- **High-Conversion Web Development**: Next.js-based web applications optimized for speed and SEO.
+- **Workflow Automation**: Deep integration of AI into existing business CRMs and workflows.
+- **SaaS Platforms**: End-to-end development of scalable software-as-a-service products.
+
+## Core Tech Stack
+- **Frontend**: Next.js, React, Tailwind CSS, Motion.
+- **AI/ML**: Gemini 1.5 Pro API, Retrieval-Augmented Generation (RAG), Vector Databases.
+- **Deployment**: Vercel, Secure API Architectures.
+
+## Key Pages
+- [Home](https://harbeni.com/)
+- [Expertise](https://harbeni.com/expertise)
+- [Work](https://harbeni.com/work)
+- [Process](https://harbeni.com/process)
+- [Pricing](https://harbeni.com/pricing)
+- [Contact](https://harbeni.com/contact)
+
+## Contact
+- Email: info@harbeni.com
+- Phone: (437) 367-0727
+- Location: Brampton, Ontario (GTA)

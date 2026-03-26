@@ -3,9 +3,9 @@ import { CountUp } from './CountUp';
 
 export const StatsBar = () => {
   const stats = [
-    { label: "Projects Delivered", value: 105, suffix: "+" },
-    { label: "Client Satisfaction", value: 98, suffix: "%" },
-    { label: "Years Experience", value: 11, suffix: "+" },
+    { label: "Admin Time Reduced", value: 80, suffix: "%" },
+    { label: "AI Agents Deployed", value: 50, suffix: "+" },
+    { label: "Conversion Lift", value: 45, suffix: "%" },
   ];
 
   return (
