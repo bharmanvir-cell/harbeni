@@ -12,6 +12,7 @@ import { Work } from './pages/Work';
 import { Process } from './pages/Process';
 import { Pricing } from './pages/Pricing';
 import { Contact } from './pages/Contact';
+import { NotFound } from './pages/NotFound';
 import { ScrollToTop } from './components/ScrollToTop';
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="process" element={<Process />} />
           <Route path="pricing" element={<Pricing />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
