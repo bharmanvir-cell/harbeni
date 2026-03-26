@@ -8,7 +8,12 @@ export default defineConfig(({mode}) => {
   return {
     plugins: [react(), tailwindcss()],
     define: {
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+      'process.env.MISTRAL_API_KEY': JSON.stringify(env.MISTRAL_API_KEY),
+```
+
+In `.env.example`, replace:
+```
+MISTRAL_API_KEY="your_mistral_api_key_here"
     },
     resolve: {
       alias: {
