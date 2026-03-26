@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageSquare, X, Send, Loader2, Calendar, Bot, User } from 'lucide-react';
-// Remove this:
-import { GoogleGenAI } from "@google/genai";
 
 // Add this (Mistral uses plain fetch):
 // No import needed
@@ -56,28 +54,45 @@ export const ChatBot = () => {
   }, [messages, isTyping]);
 
   const handleSend = async () => {
-    const response = await fetch("https://api.mistral.ai/v1/chat/completions", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "Authorization": `Bearer ${process.env.MISTRAL_API_KEY}`,
-  },
-  body: JSON.stringify({
-    model: "mistral-small-latest",
-    messages: [
-      {
-        role: "system",
-        content: `You are the Harbeni AI Assistant. Harbeni is a high-end AI automation and web development agency based in Toronto. Services: Custom AI Agents, High-Conversion Web Dev, Workflow Automation, SaaS Platforms. Pricing: Launch $4,999, Growth $1,499/month, Enterprise custom. Tone: sophisticated, minimalist. Keep responses concise.`
-      },
-      ...messages.map(m => ({
-        role: m.sender === "user" ? "user" : "assistant",
-        content: m.text,
-      })),
-      { role: "user", content: inputValue },
-    ],
-    max_tokens: 300,
-  }),
-});
+try {
+  const response = await fetch('/api/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      messages: [
+        ...messages.map(m => ({
+          role: m.sender === 'user' ? 'user' : 'assistant',
+          content: m.text,
+        })),
+        { role: 'user', content: inputValue },
+      ],
+    }),
+  });
+
+  if (!response.ok) throw new Error('API error');
+
+  const data = await response.json();
+
+  const botMsg: Message = {
+    id: Date.now().toString(),
+    text: data.text || "I'm sorry, I couldn't process that. How else can I help?",
+    sender: 'bot',
+    timestamp: Date.now(),
+  };
+
+  setMessages(prev => [...prev, botMsg]);
+} catch (error) {
+  console.error('Chat error:', error);
+  const errorMsg: Message = {
+    id: Date.now().toString(),
+    text: "I'm having trouble connecting right now. Feel free to reach out via our contact page!",
+    sender: 'bot',
+    timestamp: Date.now(),
+  };
+  setMessages(prev => [...prev, errorMsg]);
+} finally {
+  setIsTyping(false);
+}
 
 const data = await response.json();
 const text = data.choices?.[0]?.message?.content;
