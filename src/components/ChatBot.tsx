@@ -56,6 +56,31 @@ export const ChatBot = () => {
   }, [messages, isTyping]);
 
   const handleSend = async () => {
+    const response = await fetch("https://api.mistral.ai/v1/chat/completions", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${process.env.MISTRAL_API_KEY}`,
+  },
+  body: JSON.stringify({
+    model: "mistral-small-latest",
+    messages: [
+      {
+        role: "system",
+        content: `You are the Harbeni AI Assistant. Harbeni is a high-end AI automation and web development agency based in Toronto. Services: Custom AI Agents, High-Conversion Web Dev, Workflow Automation, SaaS Platforms. Pricing: Launch $4,999, Growth $1,499/month, Enterprise custom. Tone: sophisticated, minimalist. Keep responses concise.`
+      },
+      ...messages.map(m => ({
+        role: m.sender === "user" ? "user" : "assistant",
+        content: m.text,
+      })),
+      { role: "user", content: inputValue },
+    ],
+    max_tokens: 300,
+  }),
+});
+
+const data = await response.json();
+const text = data.choices?.[0]?.message?.content;
     if (!inputValue.trim()) return;
 
     const userMsg: Message = {
