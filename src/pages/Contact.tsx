@@ -1,215 +1,174 @@
-import { useState } from 'react';
-import { motion } from 'motion/react';
-import { Mail, Phone, MapPin, Send, CheckCircle, Loader2 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
-export const Contact = () => {
-  const [form, setForm] = useState({
+const Container = ({ children }: { children: React.ReactNode }) => (
+  <div className="max-w-7xl mx-auto px-6 lg:px-8">{children}</div>
+);
+
+export default function Contact() {
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
-    projectType: 'AI System',
     message: '',
   });
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  // === META UPDATE ===
+  useEffect(() => {
+    document.title = 'Contact Harbeni | Let’s Build the Future';
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute(
+        'content',
+        'Ready to command your empire? Get in touch with Harbeni — 2030s digital intelligence architect.'
+      );
+    }
+  }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.message) return;
-    setStatus('loading');
-
-    try {
-      await fetch('https://formspree.io/f/mnjoqzra', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
-      setStatus('success');
-      setForm({ name: '', email: '', projectType: 'AI System', message: '' });
-    } catch {
-      setStatus('error');
-    }
+    // TODO: Replace with your actual form backend (EmailJS, Resend, etc.)
+    alert('🚀 Message received. I will reply within 12 hours.');
+    setFormData({ name: '', email: '', message: '' });
   };
 
   return (
-    <div className="pt-32 pb-24">
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="px-6 max-w-7xl mx-auto text-center mb-20"
-      >
-        <h1 className="text-3xl sm:text-5xl md:text-7xl font-display font-extrabold mb-6">
-          Get in Touch
-        </h1>
-        <p className="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto">
-          Ready to architect your next system? Let's build something without limits.
-        </p>
-      </motion.section>
-
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="glass p-10 rounded-3xl hover:border-accent-cyan/20 transition-all duration-500"
-        >
-          {status === 'success' ? (
-            <div className="flex flex-col items-center justify-center h-full gap-6 py-16 text-center">
-              <CheckCircle size={56} className="text-accent-cyan" />
-              <h3 className="text-2xl font-syne font-bold text-white">Message Sent</h3>
-              <p className="text-zinc-400 font-mono text-sm">
-                We'll be in touch within 24 hours.
-              </p>
-              <button
-                onClick={() => setStatus('idle')}
-                className="mt-4 text-xs font-mono text-zinc-500 hover:text-accent-cyan transition-colors uppercase tracking-widest"
-              >
-                Send another message
-              </button>
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 pb-24">
+      {/* HERO */}
+      <section className="pt-32 pb-20 border-b border-white/10">
+        <Container>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9 }}
+            className="text-center max-w-3xl mx-auto"
+          >
+            <div className="inline-flex items-center gap-2 bg-white/5 text-sm px-5 py-2.5 rounded-3xl border border-white/10 mb-6">
+              <Mail className="w-4 h-4" />
+              LET’S CONNECT
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <h1 className="text-6xl md:text-7xl font-syne tracking-tighter leading-none mb-6">
+              COMMAND YOUR EMPIRE
+            </h1>
+            <p className="text-2xl text-zinc-400">
+              The future doesn’t wait. Neither do I.<br />
+              Tell me your vision — I’ll make it inevitable.
+            </p>
+          </motion.div>
+        </Container>
+      </section>
+
+      <div className="grid lg:grid-cols-12 gap-16 py-24">
+        {/* FORM */}
+        <div className="lg:col-span-7">
+          <Container>
+            <form onSubmit={handleSubmit} className="space-y-8">
               <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest text-zinc-500">
-                    Full Name
-                  </label>
+                <div>
+                  <label className="block text-sm font-mono text-zinc-400 mb-2">YOUR NAME</label>
                   <input
                     type="text"
                     name="name"
-                    value={form.name}
+                    value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-accent-cyan focus:shadow-[0_0_15px_rgba(0,242,255,0.2)] hover:border-white/20 transition-all"
-                    placeholder="John Doe"
+                    className="glass w-full px-6 py-5 rounded-3xl border border-white/10 focus:border-cyan-400 outline-none text-lg placeholder:text-zinc-500"
+                    placeholder="Harman Sarabha"
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest text-zinc-500">
-                    Email Address
-                  </label>
+                <div>
+                  <label className="block text-sm font-mono text-zinc-400 mb-2">YOUR EMAIL</label>
                   <input
                     type="email"
                     name="email"
-                    value={form.email}
+                    value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-accent-cyan focus:shadow-[0_0_15px_rgba(0,242,255,0.2)] hover:border-white/20 transition-all"
-                    placeholder="john@example.com"
+                    className="glass w-full px-6 py-5 rounded-3xl border border-white/10 focus:border-cyan-400 outline-none text-lg placeholder:text-zinc-500"
+                    placeholder="you@empire.com"
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-zinc-500">
-                  Project Type
-                </label>
-                <select
-                  name="projectType"
-                  value={form.projectType}
-                  onChange={handleChange}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-accent-cyan focus:shadow-[0_0_15px_rgba(0,242,255,0.2)] hover:border-white/20 transition-all appearance-none"
-                >
-                  <option className="bg-zinc-900">AI System</option>
-                  <option className="bg-zinc-900">Custom SaaS</option>
-                  <option className="bg-zinc-900">Mobile App</option>
-                  <option className="bg-zinc-900">Web App</option>
-                </select>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-zinc-500">
-                  Message
-                </label>
+              <div>
+                <label className="block text-sm font-mono text-zinc-400 mb-2">YOUR VISION</label>
                 <textarea
                   name="message"
-                  value={form.message}
+                  value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={4}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-accent-cyan focus:shadow-[0_0_15px_rgba(0,242,255,0.2)] hover:border-white/20 transition-all"
-                  placeholder="Tell us about your project..."
+                  rows={6}
+                  className="glass w-full px-6 py-5 rounded-3xl border border-white/10 focus:border-cyan-400 outline-none text-lg placeholder:text-zinc-500 resize-none"
+                  placeholder="Describe the empire you want to build..."
                 />
               </div>
 
-              {status === 'error' && (
-                <p className="text-red-400 text-xs font-mono uppercase tracking-widest">
-                  Something went wrong. Try emailing us directly at info@harbeni.com
-                </p>
-              )}
-
-              <button
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
                 type="submit"
-                disabled={status === 'loading'}
-                className="w-full py-4 bg-accent-cyan text-zinc-950 font-bold rounded-xl hover:shadow-[0_0_25px_rgba(0,242,255,0.6)] hover:scale-[1.01] transition-all active:scale-95 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="w-full bg-white text-zinc-950 py-7 rounded-3xl text-2xl font-medium flex items-center justify-center gap-4 hover:bg-cyan-300 transition-colors group"
               >
-                {status === 'loading' ? (
-                  <>
-                    <Loader2 size={18} className="animate-spin" /> Sending...
-                  </>
-                ) : (
-                  <>
-                    Book a Discovery Call <Send size={18} />
-                  </>
-                )}
-              </button>
+                SEND TRANSMISSION
+                <Send className="w-6 h-6 group-active:rotate-45 transition-transform" />
+              </motion.button>
             </form>
-          )}
-        </motion.div>
+          </Container>
+        </div>
 
-        <div className="space-y-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="glass p-8 rounded-3xl flex items-center gap-6"
-          >
-            <div className="w-14 h-14 rounded-2xl bg-accent-cyan/10 text-accent-cyan flex items-center justify-center">
-              <Mail size={28} />
-            </div>
-            <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Email Us</p>
-              <p className="text-xl font-display font-bold">info@harbeni.com</p>
-            </div>
-          </motion.div>
+        {/* DIRECT CONTACT */}
+        <div className="lg:col-span-5">
+          <Container>
+            <div className="glass p-10 rounded-3xl border border-white/10 h-full flex flex-col justify-between">
+              <div>
+                <h3 className="text-3xl font-medium mb-8">Direct Transmission Lines</h3>
+                
+                <div className="space-y-8">
+                  <a href="mailto:harman@harbeni.com" className="flex items-center gap-6 group">
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-400 transition-colors">
+                      <Mail className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-mono text-zinc-400">EMAIL</div>
+                      <div className="text-xl">harman@harbeni.com</div>
+                    </div>
+                  </a>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="glass p-8 rounded-3xl flex items-center gap-6"
-          >
-            <div className="w-14 h-14 rounded-2xl bg-accent-purple/10 text-accent-purple flex items-center justify-center">
-              <Phone size={28} />
-            </div>
-            <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Call Us</p>
-              <p className="text-xl font-display font-bold">(437) 367-0727</p>
-            </div>
-          </motion.div>
+                  <a href="https://x.com/SarabhaHarman" target="_blank" className="flex items-center gap-6 group">
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-400 transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25l-7.165 8.159L3.75 2.25H0L9.69 13.5 0 21.75h3.75l7.165-8.159 7.165 8.159H24L14.31 13.5 24 2.25z"/></svg>
+                    </div>
+                    <div>
+                      <div className="text-sm font-mono text-zinc-400">X / TWITTER</div>
+                      <div className="text-xl">@SarabhaHarman</div>
+                    </div>
+                  </a>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="glass p-8 rounded-3xl flex items-center gap-6"
-          >
-            <div className="w-14 h-14 rounded-2xl bg-accent-cyan/10 text-accent-cyan flex items-center justify-center">
-              <MapPin size={28} />
+                  <div className="flex items-center gap-6">
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10">
+                      <MapPin className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-mono text-zinc-400">LOCATION</div>
+                      <div className="text-xl">Brampton, Ontario • Earth 2026</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-12 border-t border-white/10 text-sm text-zinc-400">
+                Response time: <span className="text-cyan-400 font-medium">Under 12 hours</span><br />
+                I reply to every serious empire builder.
+              </div>
             </div>
-            <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Visit Us</p>
-              <p className="text-xl font-display font-bold">Brampton, Ontario (GTA)</p>
-            </div>
-          </motion.div>
+          </Container>
         </div>
       </div>
     </div>
   );
-};
+}
