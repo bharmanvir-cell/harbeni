@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom'; // we will add this later if needed, but for now using simple <a>
-
-export default function Navbar() {
+export function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
