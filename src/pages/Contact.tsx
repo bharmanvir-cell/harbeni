@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Send, CheckCircle, Loader2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export const Contact = () => {
   const [form, setForm] = useState({
@@ -9,7 +9,17 @@ export const Contact = () => {
     projectType: 'AI System',
     message: '',
   });
+
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  useEffect(() => {
+    document.title = 'Contact Harbeni — Let’s Build the Future';
+
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute('content', 'Ready to command your empire? Get in touch with Harbeni — 2030s digital intelligence architect.');
+    }
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -20,6 +30,7 @@ export const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) return;
+
     setStatus('loading');
 
     try {
@@ -51,6 +62,7 @@ export const Contact = () => {
       </motion.section>
 
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12">
+        {/* Form Section */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -153,7 +165,7 @@ export const Contact = () => {
                   </>
                 ) : (
                   <>
-                    Book a Discovery Call <Send size={18} />
+                    Send Message <Send size={18} />
                   </>
                 )}
               </button>
@@ -161,7 +173,30 @@ export const Contact = () => {
           )}
         </motion.div>
 
+        {/* Sidebar */}
         <div className="space-y-8">
+          {/* Calendly Booking */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="glass p-8 rounded-3xl"
+          >
+            <h3 className="text-xl font-bold mb-4">Book a Discovery Call</h3>
+            <p className="text-zinc-400 text-sm mb-6">
+              Let's discuss your project in a 30-minute call.
+            </p>
+            <a
+              href="https://calendly.com/bharmanvir/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full py-4 bg-white text-zinc-950 font-bold rounded-xl text-center hover:bg-accent-cyan hover:text-zinc-950 transition-all"
+            >
+              Schedule 30 Min Call
+            </a>
+          </motion.div>
+
+          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
