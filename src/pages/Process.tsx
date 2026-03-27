@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Search, PenTool, Code, Rocket } from 'lucide-react';
+import { useEffect } from 'react';
 
 const steps = [
   { title: "Discovery", desc: "We analyze your current manual workflows and bottlenecks to identify high-impact AI opportunities.", icon: Search },
@@ -9,9 +10,18 @@ const steps = [
 ];
 
 export const Process = () => {
+  useEffect(() => {
+    document.title = 'Our Process — How Empires Are Built';
+
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute('content', 'Our 5-step intelligent process: from vision to autonomous, self-evolving digital empires in weeks, not months.');
+    }
+  }, []);
+
   return (
     <div className="pt-32 pb-24">
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="px-6 max-w-7xl mx-auto text-center mb-20"
