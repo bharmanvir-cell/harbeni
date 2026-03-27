@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
   :root {
@@ -11,14 +9,14 @@
     @apply bg-zinc-950 text-zinc-100 font-sans;
   }
 
-  /* Glassmorphic effect used everywhere */
+  /* Glassmorphic effect used on every page */
   .glass {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  /* Smooth transitions for all elements */
+  /* Smooth transitions everywhere */
   * {
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
