@@ -1,50 +1,25 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap');
-
-@theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", sans-serif;
-  --font-syne: "Syne", sans-serif;
-  --font-mono: "DM Mono", monospace;
-  
-  --color-accent-cyan: #00e5ff;
-  --color-accent-purple: #9d4edd;
-  --color-harbeni-dark: #040810;
-}
 
 @layer base {
+  :root {
+    color-scheme: dark;
+  }
+
   body {
-    @apply bg-zinc-950 text-zinc-100 font-sans selection:bg-accent-cyan/30;
+    @apply bg-zinc-950 text-zinc-100 font-sans;
   }
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
-
+/* Glassmorphic effect used on every page */
 .glass {
-  @apply backdrop-blur-md bg-white/5 border border-white/10;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.text-gradient {
-  @apply bg-clip-text text-transparent bg-linear-to-r from-accent-cyan via-accent-purple to-accent-cyan bg-[length:200%_auto] animate-[gradient_4s_linear_infinite];
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-@keyframes gradient {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
+/* Smooth transitions used everywhere */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }
