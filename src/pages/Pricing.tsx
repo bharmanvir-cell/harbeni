@@ -1,8 +1,8 @@
-import React from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
-import { Check, Zap, Brain, Rocket, MessageSquare, Mic, Shield, Star } from 'lucide-react';
+import { motion } from 'motion/react';
+import { Check, Zap, Brain, Rocket, Shield, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { FuturisticIcon } from '../components/FuturisticIcon';
+import { useEffect } from 'react';
 
 interface Plan {
   name: string;
@@ -89,10 +89,8 @@ const plans: Plan[] = [
 const PricingCard: React.FC<{ plan: Plan; index: number }> = ({ plan, index }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-
   const mouseXSpring = useSpring(x);
   const mouseYSpring = useSpring(y);
-
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
 
@@ -127,8 +125,8 @@ const PricingCard: React.FC<{ plan: Plan; index: number }> = ({ plan, index }) =
         transformStyle: "preserve-3d",
       }}
       className={`relative group bg-[#040810] p-8 rounded-[32px] border transition-all duration-500 flex flex-col h-full ${
-        plan.popular 
-          ? 'border-[#00e5ff]/30 shadow-[0_0_40px_rgba(0,229,255,0.1)] z-10' 
+        plan.popular
+          ? 'border-[#00e5ff]/30 shadow-[0_0_40px_rgba(0,229,255,0.1)] z-10'
           : 'border-white/5 hover:border-white/20'
       }`}
     >
@@ -137,7 +135,7 @@ const PricingCard: React.FC<{ plan: Plan; index: number }> = ({ plan, index }) =
           <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-gradient-to-r from-[#00e5ff] to-[#9d4edd] text-zinc-950 text-[10px] font-black uppercase tracking-[0.2em] rounded-full z-20 shadow-[0_0_20px_rgba(0,229,255,0.4)]">
             Most Popular
           </div>
-          <motion.div 
+          <motion.div
             className="absolute inset-0 rounded-[32px] border-2 border-transparent bg-gradient-to-r from-[#00e5ff]/20 to-[#9d4edd]/20 pointer-events-none"
             animate={{
               opacity: [0.3, 0.6, 0.3],
@@ -154,10 +152,10 @@ const PricingCard: React.FC<{ plan: Plan; index: number }> = ({ plan, index }) =
 
       <div style={{ transform: "translateZ(50px)" }} className="relative z-10">
         <div className="flex items-center gap-4 mb-8">
-          <FuturisticIcon 
-            icon={plan.icon} 
-            color={plan.accent === '#00e5ff' ? 'cyan' : 'purple'} 
-            size={24} 
+          <FuturisticIcon
+            icon={plan.icon}
+            color={plan.accent === '#00e5ff' ? 'cyan' : 'purple'}
+            size={24}
             glow={plan.popular}
           />
           <div>
@@ -198,11 +196,11 @@ const PricingCard: React.FC<{ plan: Plan; index: number }> = ({ plan, index }) =
           ))}
         </div>
 
-        <Link 
-          to="/contact" 
+        <Link
+          to="/contact"
           className={`w-full py-4 rounded-2xl font-syne font-bold text-xs uppercase tracking-widest transition-all text-center block ${
-            plan.popular 
-              ? 'bg-[#00e5ff] text-zinc-950 hover:shadow-[0_0_30px_rgba(0,229,255,0.5)]' 
+            plan.popular
+              ? 'bg-[#00e5ff] text-zinc-950 hover:shadow-[0_0_30px_rgba(0,229,255,0.5)]'
               : 'bg-white/5 text-white hover:bg-white/10 border border-white/10'
           }`}
         >
@@ -214,9 +212,18 @@ const PricingCard: React.FC<{ plan: Plan; index: number }> = ({ plan, index }) =
 };
 
 export const Pricing = () => {
+  useEffect(() => {
+    document.title = 'Pricing — Build Your Empire';
+
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute('content', 'Transparent pricing for 2030s digital empires. From starter presence to full AI autopilot systems.');
+    }
+  }, []);
+
   return (
     <div className="pt-32 pb-24 bg-[#040810] min-h-screen">
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="px-6 max-w-7xl mx-auto text-center mb-24"
@@ -235,14 +242,14 @@ export const Pricing = () => {
         ))}
       </section>
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
         className="mt-20 text-center"
       >
         <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest">
-          Not sure? <Link to="/contact" id="booking" className="text-[#00e5ff] hover:underline underline-offset-4 transition-all">Book a free 15-min call</Link>
+          Not sure? <Link to="/contact" className="text-[#00e5ff] hover:underline underline-offset-4 transition-all">Book a free 15-min call</Link>
         </p>
       </motion.div>
     </div>
