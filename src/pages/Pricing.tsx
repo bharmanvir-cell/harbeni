@@ -1,8 +1,9 @@
-import { motion } from 'motion/react';
-import { Check, Zap, Brain, Rocket, Shield, Star } from 'lucide-react';
+import { useEffect } from 'react';
+import React from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
+import { Check, Zap, Brain, Rocket, MessageSquare, Mic, Shield, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { FuturisticIcon } from '../components/FuturisticIcon';
-import { useEffect } from 'react';
 
 interface Plan {
   name: string;
