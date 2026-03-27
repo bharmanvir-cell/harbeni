@@ -184,10 +184,10 @@ export const Contact = () => {
           >
             <h3 className="text-xl font-bold mb-4">Book a Discovery Call</h3>
             <p className="text-zinc-400 text-sm mb-6">
-              Let's discuss your project in a 30-minute call.
+              Let's discuss your project in a 15-minute call.
             </p>
             <a
-              href="https://calendly.com/bharmanvir/30min"
+              href="https://calendly.com/harbeni/30min"
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full py-4 bg-white text-zinc-950 font-bold rounded-xl text-center hover:bg-accent-cyan hover:text-zinc-950 transition-all"
