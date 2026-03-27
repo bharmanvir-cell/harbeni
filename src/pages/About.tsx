@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { AboutHero } from '../components/AboutHero';
 import { Zap, Brain, Cpu, Globe, ArrowRight } from 'lucide-react';
+import { useEffect } from 'react';
 
 const PhilosophySection = () => (
   <section className="py-24 px-6 bg-[#050505] border-y border-white/5">
@@ -59,7 +60,6 @@ const ArsenalSection = () => (
           We operate where high-end web architecture meets autonomous intelligence.
         </p>
       </div>
-
       <div className="grid md:grid-cols-3 gap-8">
         {[
           {
@@ -121,7 +121,6 @@ const AestheticSection = () => (
           <p className="text-2xl font-syne font-black text-white">Sophisticated Intelligence.</p>
         </div>
       </motion.div>
-
       <motion.div
         initial={{ opacity: 0, x: 30 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -168,25 +167,39 @@ const PartnersSection = () => (
         <p className="text-lg text-zinc-500 font-sans max-w-2xl mx-auto mb-16">
           Our clients refuse to settle for friction. They demand bespoke, autonomous ecosystems that elevate their user experience and run their operations on autopilot.
         </p>
-        
+       
         <div className="h-px bg-linear-to-r from-transparent via-white/10 to-transparent mb-16" />
-        
+       
         <h3 className="text-4xl md:text-6xl font-syne font-black text-white tracking-tight mb-8">
           Welcome to the new <br />
           <span className="text-accent-cyan">standard of operations.</span>
         </h3>
-        
-        <button className="group relative px-12 py-6 bg-white text-harbeni-dark font-syne font-black text-xl rounded-2xl hover:bg-accent-cyan transition-all overflow-hidden">
+       
+        {/* Fixed Functional Button */}
+        <a
+          href="/contact"
+          className="group relative inline-flex px-12 py-6 bg-white text-harbeni-dark font-syne font-black text-xl rounded-2xl hover:bg-accent-cyan transition-all overflow-hidden"
+        >
           <span className="relative z-10 flex items-center gap-3">
-            COMMAND YOUR EMPIRE <ArrowRight className="group-hover:translate-x-2 transition-transform" />
+            COMMAND YOUR EMPIRE 
+            <ArrowRight className="group-hover:translate-x-2 transition-transform" />
           </span>
-        </button>
+        </a>
       </motion.div>
     </div>
   </section>
 );
 
 export const About = () => {
+  useEffect(() => {
+    document.title = 'About Harbeni — The End of Passive Software';
+
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute('content', 'Discover Harbeni’s philosophy: where passive software dies and sophisticated, self-evolving digital intelligence begins.');
+    }
+  }, []);
+
   return (
     <div className="bg-[#050505]">
       <AboutHero />
