@@ -75,7 +75,6 @@ const plans = [
 ];
 
 export default function Pricing() {
-  // === META UPDATE ===
   useEffect(() => {
     document.title = 'Pricing | Harbeni — 2030s Digital Intelligence';
 
@@ -164,4 +163,33 @@ export default function Pricing() {
 
                 <a
                   href="/contact"
-                  className="mt-auto block text-center bg-white text-zinc-
+                  className="mt-auto block text-center bg-white text-zinc-950 py-6 rounded-3xl text-xl font-medium hover:scale-105 active:scale-95 transition-transform"
+                >
+                  Get Started
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* FINAL CTA */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        className="text-center py-20 border-t border-white/10"
+      >
+        <Container>
+          <p className="text-3xl font-light mb-8">Not sure which empire to build?</p>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-4 bg-white text-zinc-950 px-12 py-7 rounded-3xl text-2xl font-medium hover:scale-105 active:scale-95 transition-transform group"
+          >
+            Let’s Command It Together
+            <ArrowRight className="w-7 h-7 group-active:translate-x-1 transition-transform" />
+          </a>
+        </Container>
+      </motion.div>
+    </div>
+  );
+}
