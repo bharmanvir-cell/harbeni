@@ -6,45 +6,20 @@
   }
 
   body {
-    @apply bg-zinc-950 text-zinc-100 font-sans selection:bg-accent-cyan/30;
+    @apply bg-zinc-950 text-zinc-100 font-sans;
   }
 }
 
-/* Glassmorphic class used everywhere */
+/* Glassmorphic style used across the entire site */
 .glass {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Smooth transitions */
+/* Smooth transitions (used everywhere) */
 * {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
-}
-
-/* Your custom fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap');
-
-/* Custom utility classes you use */
-.text-gradient {
-  background: linear-gradient(to right, #00e5ff, #9d4edd, #00e5ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradient 4s linear infinite;
-}
-
-@keyframes gradient {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
-}
-
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
 }
