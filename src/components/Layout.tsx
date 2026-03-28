@@ -6,7 +6,6 @@ import ThemeToggle from './ThemeToggle';
 
 export const Layout = () => {
   return (
-    {/* Removed 'bg-zinc-950' so the body background colors can change freely */}
     <div className="min-h-screen overflow-x-hidden transition-colors duration-300">
       <Navbar />
       <main>
