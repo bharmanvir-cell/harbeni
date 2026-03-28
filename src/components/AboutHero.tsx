@@ -2,7 +2,8 @@ import { motion } from 'motion/react';
 
 export const AboutHero = () => {
   return (
-    <section className="relative h-[80vh] flex items-center justify-center overflow-hidden bg-[#050505]">
+    {/* Removed bg-[#050505] so it inherits the theme background smoothly */}
+    <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
       {/* Background Neon Nodes */}
       <div className="absolute inset-0 z-0">
         <svg className="w-full h-full opacity-30" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
@@ -67,7 +68,8 @@ export const AboutHero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-5xl md:text-7xl font-syne font-black text-white mb-6 tracking-tight"
+          {/* Removed text-white here */}
+          className="text-5xl md:text-7xl font-syne font-black mb-6 tracking-tight"
         >
           The Intelligence Behind <br />
           <span className="text-accent-cyan">the Autopilot.</span>
@@ -76,7 +78,8 @@ export const AboutHero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-xl md:text-2xl font-mono text-zinc-400 uppercase tracking-widest"
+          {/* Replaced text-zinc-400 with opacity-70 */}
+          className="text-xl md:text-2xl font-mono opacity-70 uppercase tracking-widest"
         >
           We don’t just write code. We engineer operational advantage.
         </motion.p>
