@@ -21,12 +21,14 @@ export const Hero = () => {
             <span>v2.0.30 - Anticipatory Systems Active</span>
           </div>
           
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-syne font-black tracking-tighter leading-[0.85] mb-8 text-white">
+          {/* Removed text-white to let the theme dictate the color */}
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-syne font-black tracking-tighter leading-[0.85] mb-8">
             Intelligent Systems.<br />
             Sophisticated <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00e5ff] to-[#9d4edd]">Design.</span>
           </h1>
           
-          <p className="text-zinc-400 text-base sm:text-lg md:text-xl max-w-xl mb-10 leading-relaxed font-mono">
+          {/* Replaced text-zinc-400 with opacity-70 for natural theme blending */}
+          <p className="opacity-70 text-base sm:text-lg md:text-xl max-w-xl mb-10 leading-relaxed font-mono">
             Automating Excellence. We build high-performance web applications and custom AI agents that run your business on autopilot.
           </p>
 
@@ -34,9 +36,10 @@ export const Hero = () => {
             <Link to="/contact" className="px-8 py-4 bg-[#00e5ff] text-zinc-950 font-syne font-bold rounded-xl hover:shadow-[0_0_30px_rgba(0,229,255,0.5)] hover:scale-[1.02] transition-all active:scale-95 flex items-center gap-2 uppercase tracking-widest text-xs">
               Book a Discovery Call <ChevronRight size={18} />
             </Link>
+            {/* Changed white transparency to neutral zinc transparency */}
             <button 
               onClick={() => document.getElementById('architecture')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-8 py-4 bg-white/5 border border-white/10 text-white font-syne font-bold rounded-xl hover:bg-white/10 hover:border-accent-cyan/50 hover:shadow-[0_0_20px_rgba(0,229,255,0.2)] hover:scale-[1.02] transition-all active:scale-95 flex items-center gap-2 uppercase tracking-widest text-xs"
+              className="px-8 py-4 bg-zinc-500/10 border border-zinc-500/20 font-syne font-bold rounded-xl hover:bg-zinc-500/20 hover:border-accent-cyan/50 hover:shadow-[0_0_20px_rgba(0,229,255,0.2)] hover:scale-[1.02] transition-all active:scale-95 flex items-center gap-2 uppercase tracking-widest text-xs"
             >
               Backend View <Terminal size={18} className="text-accent-cyan" />
             </button>
@@ -49,7 +52,7 @@ export const Hero = () => {
           transition={{ duration: 1, delay: 0.2 }}
           className="relative aspect-square lg:aspect-auto lg:h-[600px] bg-[#040810] border border-white/5 rounded-[40px] p-8 flex flex-col gap-4 overflow-hidden shadow-2xl"
         >
-          {/* Neural Network / Code Compiling Visual */}
+          {/* Terminal grid and inner text kept exactly the same so it stays a cool dark terminal! */}
           <div className="absolute inset-0 opacity-10 pointer-events-none">
              <div className="grid grid-cols-10 h-full w-full">
                 {Array.from({ length: 100 }).map((_, i) => (
@@ -90,43 +93,27 @@ export const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Floating Data Nodes */}
+          {/* Floating Data Node 1 - Updated colors to neutral zinc */}
           <motion.div 
             animate={{ 
               y: [0, -10, 0],
               rotate: [0, 2, 0]
             }}
             transition={{ duration: 5, repeat: Infinity }}
-            className="absolute bottom-12 right-12 p-6 bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 z-20"
+            className="absolute bottom-12 right-12 p-6 bg-zinc-500/10 backdrop-blur-xl rounded-3xl shadow-2xl border border-zinc-500/20 z-20"
           >
             <div className="flex items-center gap-5">
               <FuturisticIcon icon={Activity} color="cyan" size={24} />
               <div>
                 <p className="text-[10px] font-mono font-bold text-accent-cyan uppercase tracking-[0.2em]">Active Node</p>
-                <p className="text-2xl font-syne font-black text-white">99.9% Uptime</p>
+                {/* Removed text-white */}
+                <p className="text-2xl font-syne font-black">99.9% Uptime</p>
               </div>
             </div>
           </motion.div>
 
-          {/* Secondary Node */}
+          {/* Floating Data Node 2 - Updated colors to neutral zinc */}
           <motion.div 
             animate={{ 
               y: [0, 10, 0],
-              rotate: [0, -2, 0]
-            }}
-            transition={{ duration: 6, repeat: Infinity, delay: 1 }}
-            className="absolute top-24 right-12 p-4 bg-white/5 backdrop-blur-xl rounded-2xl shadow-xl border border-white/10 z-20"
-          >
-            <div className="flex items-center gap-4">
-              <FuturisticIcon icon={Cpu} color="purple" size={18} />
-              <div>
-                <p className="text-[8px] font-mono font-bold text-accent-purple uppercase tracking-[0.2em]">Neural Engine</p>
-                <p className="text-lg font-syne font-black text-white">Optimized</p>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
-  );
-};
+              rotate:
