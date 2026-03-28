@@ -192,7 +192,7 @@ export const Contact = () => {
               rel="noopener noreferrer"
               className="block w-full py-4 bg-white text-zinc-950 font-bold rounded-xl text-center hover:bg-accent-cyan hover:text-zinc-950 transition-all"
             >
-              Schedule 30 Min Call
+              Schedule 15 Min Call
             </a>
           </motion.div>
 
