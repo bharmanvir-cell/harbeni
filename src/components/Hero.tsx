@@ -116,4 +116,22 @@ export const Hero = () => {
           <motion.div 
             animate={{ 
               y: [0, 10, 0],
-              rotate:
+              rotate: [0, -2, 0]
+            }}
+            transition={{ duration: 6, repeat: Infinity, delay: 1 }}
+            className="absolute top-24 right-12 p-4 bg-zinc-500/10 backdrop-blur-xl rounded-2xl shadow-xl border border-zinc-500/20 z-20"
+          >
+            <div className="flex items-center gap-4">
+              <FuturisticIcon icon={Cpu} color="purple" size={18} />
+              <div>
+                <p className="text-[8px] font-mono font-bold text-accent-purple uppercase tracking-[0.2em]">Neural Engine</p>
+                {/* Removed text-white */}
+                <p className="text-lg font-syne font-black">Optimized</p>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
