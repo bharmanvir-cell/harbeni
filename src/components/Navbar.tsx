@@ -66,6 +66,26 @@ export const Navbar = () => {
             </div>
           </button>
         </div>
+import { ModeToggle } from './mode-toggle' // Adjust path as needed
+// ... other imports
+
+export function Layout() {
+  return (
+    <div>
+      <nav>
+        {/* Your existing nav links */}
+        <div className="flex items-center gap-4">
+          <ModeToggle /> {/* Add the toggle here */}
+          <button>BOOK NOW</button>
+        </div>
+      </nav>
+      <main>
+        <Outlet /> {/* This renders your Home, About, etc. */}
+      </main>
+    </div>
+  )
+}
+
 
         {/* Mobile Menu Overlay */}
         <AnimatePresence>
