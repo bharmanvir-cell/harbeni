@@ -1,8 +1,4 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-        import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { Home } from './pages/Home';
 import ThemeToggle from './components/ThemeToggle';
@@ -20,11 +16,6 @@ export default function App() {
     <BrowserRouter>
       <ScrollToTop />
       
-      {/* Here is our Theme Toggle! 
-        I added Tailwind classes to make it float in the top-right corner.
-        'fixed' keeps it on screen when scrolling.
-        'z-50' ensures it stays on top of other elements.
-      */}
       <div className="fixed top-4 right-4 z-50">
         <ThemeToggle />
       </div>
@@ -40,10 +31,6 @@ export default function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Route>
-      </Routes>
-    </BrowserRouter>
-  );
-}
       </Routes>
     </BrowserRouter>
   );
