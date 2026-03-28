@@ -1,136 +1,106 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Terminal } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ModeToggle } from './mode-toggle'; // Ensure path is correct
-
-const navLinks = [
-  { name: 'ABOUT', path: '/about' },
-  { name: 'EXPERTISE', path: '/expertise' },
-  { name: 'WORK', path: '/work' },
-  { name: 'PROCESS', path: '/process' },
-  { name: 'PRICING', path: '/pricing' },
-  { name: 'CONTACT', path: '/contact' },
-];
-const toggleTheme = () => {
-  const isDark = document.documentElement.classList.toggle('dark');
-  localStorage.setItem('theme', isDark ? 'dark' : 'light');
-};
+import { Menu, X } from 'lucide-react';
+import { FuturisticIcon } from './FuturisticIcon';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const navLinks = [
+    { name: 'About', path: '/about' },
+    { name: 'Expertise', path: '/expertise' },
+    { name: 'Work', path: '/work' },
+    { name: 'Process', path: '/process' },
+    { name: 'Pricing', path: '/pricing' },
+    { name: 'Contact', path: '/contact' },
+  ];
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      scrolled ? 'bg-zinc-950/90 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="w-8 h-8 bg-[#00FF41] rounded-sm flex items-center justify-center group-hover:rotate-90 transition-transform duration-300">
-              <Terminal size={18} className="text-black" />
-            </div>
-            <span className="text-xl font-bold tracking-tighter text-white">HARBENI.</span>
+    <motion.nav 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-4 md:py-6 pointer-events-none"
+    >
+      <div className="max-w-7xl mx-auto flex justify-between items-center bg-[#040810]/80 backdrop-blur-xl border border-white/5 px-4 md:px-6 py-3 rounded-2xl pointer-events-auto relative shadow-2xl">
+        <Link to="/" className="text-xl md:text-2xl font-syne font-black tracking-tighter shrink-0 text-white">
+          HARBENI<span className="text-accent-cyan">.</span>
+        </Link>
+        
+        {/* Desktop Links */}
+        <div className="hidden lg:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <Link 
+              key={link.path}
+              to={link.path} 
+              className={`relative text-xs font-mono font-bold uppercase tracking-widest transition-colors group ${
+                location.pathname === link.path ? 'text-accent-cyan' : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              {link.name}
+              <span className={`absolute -bottom-1 left-0 h-[1px] bg-accent-cyan transition-all duration-300 shadow-[0_0_8px_rgba(0,242,255,0.8)] ${
+                location.pathname === link.path ? 'w-full' : 'w-0 group-hover:w-full'
+              }`} />
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-3">
+          <Link to="/contact" className="hidden sm:block px-6 py-2 bg-[#00e5ff] text-zinc-950 text-[10px] font-syne font-black uppercase tracking-widest rounded-lg hover:shadow-[0_0_20px_rgba(0,229,255,0.5)] transition-all active:scale-95">
+            Book Now
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={`text-xs font-bold tracking-widest transition-all duration-300 hover:text-[#00FF41] relative group ${
-                  location.pathname === link.path ? 'text-[#00FF41]' : 'text-zinc-400'
-                }`}
-              >
-                {/* Glitch effect now only active on hover for better readability */}
-                <span className="relative z-10">{link.name}</span>
-                <span className="absolute inset-0 text-[#00FF41] opacity-0 group-hover:opacity-50 group-hover:animate-pulse blur-[2px] transition-opacity">
-                  {link.name}
-                </span>
-                {location.pathname === link.path && (
-                  <motion.div
-                    layoutId="nav-underline"
-                    className="absolute -bottom-1 left-0 w-full h-[1px] bg-[#00FF41]"
-                  />
-                )}
-              </Link>
-            ))}
-            
-            {/* Theme Toggle & CTA */}
-
-              <Link
-                to="/contact"
-                className="px-6 py-2 bg-[#00FF41] text-black text-xs font-bold tracking-widest rounded-sm hover:bg-[#00FF41]/90 transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(0,255,65,0.3)]"
-              >
-                BOOK NOW
-              </Link>
-            </div>
-          </div>
-<button 
-  onClick={toggleTheme}
-  className="p-2 border border-zinc-800 rounded-sm text-[#00FF41] hover:bg-zinc-900 transition-colors"
->
-  🌓
-</button>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-4">
-            <ModeToggle />
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-white p-2 hover:text-[#00FF41] transition-colors"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-zinc-950 border-b border-white/5 overflow-hidden"
+          {/* Mobile Toggle */}
+          <button 
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden p-2 text-zinc-200 hover:text-white transition-colors group"
           >
-            <div className="px-4 pt-2 pb-6 space-y-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`block px-3 py-4 text-sm font-bold tracking-widest ${
-                    location.pathname === link.path ? 'text-[#00FF41]' : 'text-zinc-400'
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
-              <div className="pt-4 px-3">
-                <Link
+            <div className="transition-transform duration-300 group-hover:scale-110">
+              <FuturisticIcon 
+                icon={isOpen ? X : Menu} 
+                color={isOpen ? 'cyan' : 'white'} 
+                size={20} 
+                glow={isOpen}
+              />
+            </div>
+          </button>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -20 }}
+              className="absolute top-full left-0 right-0 mt-4 bg-[#040810]/98 backdrop-blur-xl rounded-2xl p-6 border border-white/5 lg:hidden shadow-2xl"
+            >
+              <div className="flex flex-col gap-6">
+                {navLinks.map((link) => (
+                  <Link 
+                    key={link.path}
+                    to={link.path}
+                    onClick={() => setIsOpen(false)}
+                    className={`text-lg font-syne font-black uppercase tracking-widest transition-colors ${
+                      location.pathname === link.path ? 'text-accent-cyan' : 'text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+                <Link 
                   to="/contact"
                   onClick={() => setIsOpen(false)}
-                  className="block w-full py-4 bg-[#00FF41] text-black text-center text-sm font-bold tracking-widest rounded-sm"
+                  className="w-full py-4 bg-[#00e5ff] text-zinc-950 text-center font-syne font-black uppercase tracking-widest rounded-xl sm:hidden"
                 >
-                  BOOK NOW
+                  Book Now
                 </Link>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.nav>
   );
 };
