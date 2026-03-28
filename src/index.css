@@ -48,3 +48,21 @@
   0% { background-position: 0% center; }
   100% { background-position: 200% center; }
 }
+/* Default Dark Theme (since your site is already dark) */
+:root {
+  --bg-color: #121212; /* Your dark background */
+  --text-color: #ffffff; /* Your light text */
+}
+
+/* Light Theme Overrides */
+.light-theme {
+  --bg-color: #ffffff; /* Light background */
+  --text-color: #121212; /* Dark text */
+}
+
+/* Apply the variables and a smooth transition */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
