@@ -67,8 +67,7 @@ export const Navbar = () => {
             ))}
             
             {/* Theme Toggle & CTA */}
-            <div className="flex items-center gap-4 ml-4">
-              <ModeToggle />
+
               <Link
                 to="/contact"
                 className="px-6 py-2 bg-[#00FF41] text-black text-xs font-bold tracking-widest rounded-sm hover:bg-[#00FF41]/90 transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(0,255,65,0.3)]"
