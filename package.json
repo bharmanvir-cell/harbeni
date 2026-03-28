@@ -21,6 +21,8 @@
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.13.2",
     "vite": "^6.2.0"
+    "next-themes": "^0.2.1",
+"lucide-react": "^0.344.0"
   },
   "devDependencies": {
     "@vercel/node": "latest",
