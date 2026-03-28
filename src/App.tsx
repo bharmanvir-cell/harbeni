@@ -2,10 +2,10 @@
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
-import ThemeToggle from './components/ThemeToggle';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { Home } from './pages/Home';
+import ThemeToggle from './components/ThemeToggle';
 import { About } from './pages/About';
 import { Expertise } from './pages/Expertise';
 import { Work } from './pages/Work';
