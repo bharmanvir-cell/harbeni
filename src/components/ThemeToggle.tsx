@@ -41,7 +41,7 @@ export default function ThemeToggle() {
         border: 'none'
       }}
     >
-      {theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode'}
+      {theme === 'dark' ? '☀️' : '🌙'}
     </button>
   );
 }
