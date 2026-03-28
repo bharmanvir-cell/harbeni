@@ -12,6 +12,10 @@ const navLinks = [
   { name: 'PRICING', path: '/pricing' },
   { name: 'CONTACT', path: '/contact' },
 ];
+const toggleTheme = () => {
+  const isDark = document.documentElement.classList.toggle('dark');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+};
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -73,6 +77,12 @@ export const Navbar = () => {
               </Link>
             </div>
           </div>
+<button 
+  onClick={toggleTheme}
+  className="p-2 border border-zinc-800 rounded-sm text-[#00FF41] hover:bg-zinc-900 transition-colors"
+>
+  🌓
+</button>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-4">
