@@ -16,10 +16,6 @@ export default function App() {
     <BrowserRouter>
       <ScrollToTop />
       
-      <div className="fixed top-4 right-4 z-50">
-        <ThemeToggle />
-      </div>
-
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
